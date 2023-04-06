@@ -1,8 +1,20 @@
 public class Building {
 
+    /**
+    * protected string name for building
+    */
     protected String name;
+    /**
+    * protected string address for building
+    */
     protected String address;
+    /**
+    * protected int for number of floors in building 
+    */
     protected int nFloors;
+    /**
+    * protected int setting  default value if not inside building
+    */
     protected int activeFloor = -1; // Default value indicating we are not inside this building
 
     /* Default constructor */
@@ -31,20 +43,27 @@ public class Building {
         this.nFloors = nFloors;
     }
 
-    /* Accessors */
+
+    /* Accessor to get name of buillding */
     public String getName() {
         return this.name;
     }
 
+    /* Accessor to get address of buillding */
     public String getAddress() {
         return this.address;
     }
 
+    /* Accessor to get number of floors of buillding */
     public int getFloors() {
         return this.nFloors;
     }
 
     /* Navigation methods */
+
+    /** 
+    * method to enter the house
+    */
     public Building enter() {
         if (activeFloor != -1) {
             throw new RuntimeException("You are already inside this Building.");
@@ -54,6 +73,9 @@ public class Building {
         return this; // Return a pointer to the current building
     }
 
+    /** 
+    * method to exit the house
+    */
     public Building exit() {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before exit().");
@@ -66,6 +88,9 @@ public class Building {
         return null; // We're outside now, so the building is null
     }
 
+    /** 
+    * method to go to a floor in building if there is an elevator 
+    */
     public void goToFloor(int floorNum) {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
@@ -77,18 +102,34 @@ public class Building {
         this.activeFloor = floorNum;
     }
 
+    /** 
+    * method to go up a floor 
+    */
     public void goUp() {
         this.goToFloor(this.activeFloor + 1);
     }
 
+    /** 
+    * method to go down a floor if there is an elevator 
+    */
     public void goDown() {
         this.goToFloor(this.activeFloor - 1);
     }
 
+    /** 
+    * method to print the methods for a building
+    */
     public void showOptions() {
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)");
     }
 
+
+    /** 
+    * method to return string of class in a clean way 
+    * 
+    * @return String
+    *        string description of class
+    */  
     public String toString() {
         return this.name + " is a " + this.nFloors + "-story building located at " + this.address + ".";
     }
